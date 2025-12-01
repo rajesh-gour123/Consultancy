@@ -1,19 +1,25 @@
+/* ========================== */
+/* HERO SECTION (UPDATED)     */
+/* ========================== */
+
+/* Mobile & Tablet: auto height */
 .hero-carousel {
-  height: 100vh;
+  width: 100%;
+  height: auto;
   position: relative;
   overflow: hidden;
 }
 
-/* Full screen clear images */
+/* Allow natural image height for small screens */
 .hero-img {
   width: 100%;
-  height: 100vh;
+  height: auto;
   object-fit: cover;
 }
 
-/* Text stays fixed while slides scroll */
+/* Text stays fixed */
 .hero-caption {
- position: absolute;
+  position: absolute;
   top: 50%;
   left: 60px;
   transform: translateY(-50%);
@@ -29,12 +35,39 @@
   color: #fff !important;
 }
 
-/* Mobile Responsive Fix */
+/* Carousel arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+}
+
+/* ========================== */
+/* Desktop & Laptop Full Height */
+/* ========================== */
+@media(min-width:992px) {
+
+  /* Full screen hero */
+  .hero-carousel {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .carousel-item {
+    height: 100vh;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* Mobile Hero Caption */
 @media (max-width: 768px) {
   .hero-caption {
-    top: 50%;
     left: 20px;
-    transform: translateY(-50%);
     max-width: 90%;
   }
   .hero-caption h1 {
@@ -42,14 +75,10 @@
   }
 }
 
-/* Improve carousel navigation button visibility */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(1);
-}
+/* ========================== */
+/* NAVBAR                     */
+/* ========================== */
 
-
-/* Custom Navbar */
 .custom-navbar {
   background-color: #ffffff !important;
   padding: 12px 0;
@@ -69,7 +98,6 @@
   transition: .3s;
 }
 
-/* Hover Effect */
 .custom-navbar .nav-link:hover {
   color: #0d6efd !important;
 }
@@ -88,17 +116,17 @@
   transition: width 0.3s ease-in-out;
 }
 
+/* ========================== */
+/* SIDEBAR                    */
+/* ========================== */
 
-/* ========================== */
-/* Blur Transparent Sidebar   */
-/* ========================== */
 .sidebar {
-   position: fixed;
+  position: fixed;
   top: 0;
   left: -340px;
   width: 340px;
   height: 100vh;
-  background: #111; /* Dark background */
+  background: #111;
   color: #fff;
   padding-top: 100px;
   transition: left 0.35s ease-in-out;
@@ -128,10 +156,10 @@
   color: #0d6efd;
 }
 
+/* ========================== */
+/* HAMBURGER BUTTON           */
+/* ========================== */
 
-/* ========================== */
-/* Hamburger Button Styling   */
-/* ========================== */
 .hamburger {
   border: none;
   background: transparent;
@@ -142,7 +170,7 @@
   z-index: 2000;
   position: fixed;
   top: 18px;
-  right: 20px; /* stays visible when sidebar opens */
+  right: 20px;
 }
 
 .hamburger span {
@@ -152,10 +180,8 @@
   transition: .3s;
 }
 
-/* Turn into Cross */
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translateY(12px);
-  background: #000;
 }
 
 .hamburger.active span:nth-child(2) {
@@ -164,22 +190,19 @@
 
 .hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translateY(-12px);
-  background: #000;
 }
 
-
-/* Desktop Only */
+/* Desktop Hide Sidebar Toggle */
 @media(min-width:992px) {
-   #mobileSidebar, #menuBtn {
-    display: none;
-  }
-  #menuBtn {
+  #mobileSidebar, #menuBtn {
     display: none;
   }
 }
 
 /* ========================== */
-/* Services Section Styling   */
+/* SERVICES SECTION           */
+/* ========================== */
+
 .services-section {
   background: #f9fbfc;
 }
@@ -210,8 +233,10 @@
   color: #0d6efd;
 }
 
+/* ========================== */
+/* ABOUT SECTION              */
+/* ========================== */
 
-/* about section */
 .about-section h2 {
   font-size: 2.3rem;
   font-weight: 700;
@@ -228,13 +253,16 @@
   border-radius: 15px;
 }
 
-@media (max-width: 992px) {
+@media(min-width:992px) {
   .about-section img {
     margin-top: 30px;
   }
 }
 
-/* JOB SECTION */
+/* ========================== */
+/* LATEST JOBS SECTION        */
+/* ========================== */
+
 .latest-jobs-section {
   background: #f8fafc;
 }
@@ -286,18 +314,10 @@
   color: white;
 }
 
-.fade {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all .4s ease-in-out;
-}
+/* ========================== */
+/* APPLY FORM                 */
+/* ========================== */
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Apply Form Custom UI */
 .custom-input {
   height: 48px;
   border-radius: 10px;
@@ -315,25 +335,14 @@
   font-size: 32px;
 }
 
-.upload-box {
-  background: #f8faff;
-  border-style: dashed !important;
-}
-
-.upload-box input {
-  background: #fff;
-  border-radius: 10px;
-}
-
-/* Make card rounded like screenshot */
 .apply-section .shadow {
   border-radius: 18px !important;
 }
 
-
 /* ========================== */
-/* Contact Section Styling    */
-/* Contact Section */
+/* CONTACT SECTION            */
+/* ========================== */
+
 .contact-section h2 {
   font-size: 32px;
 }
@@ -355,19 +364,10 @@
   border-radius: 20px !important;
 }
 
-.custom-input {
-  height: 48px;
-  border-radius: 12px;
-  border: 1px solid #dcdcdc;
-  padding-left: 14px;
-}
+/* ========================== */
+/* FOOTER                     */
+/* ========================== */
 
-.custom-input:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 6px rgba(13,110,253,0.25);
-}
-
-/* Footer  */
 .footer-section {
   background: #0e1525;
   color: #dcdcdc;
@@ -391,7 +391,6 @@
 .footer-links a {
   color: #dcdcdc;
   text-decoration: none;
-  transition: 0.3s;
 }
 
 .footer-links a:hover {
@@ -415,36 +414,3 @@
   border-color: rgba(255,255,255,0.2);
   margin-top: 20px;
 }
-
-
-/* All Jobs Post */
-.job-type-badge {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.fulltime {
-  background: #e6f2ff;
-  color: #0d6efd;
-}
-
-.parttime {
-  background: #fff4e6;
-  color: #ff8800;
-}
-
-.tag-pill {
-  background: #eef0f2;
-  color: #333;
-}
-
-.job-card {
-  transition: 0.2s ease;
-}
-
-.job-card:hover {
-  transform: translateY(-3px);
-}
-
