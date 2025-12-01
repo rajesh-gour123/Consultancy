@@ -4,7 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/expressError.js");
 const Application = require("../models/publicResume");
 const { resumeValidation } = require("../middleware.js");
-const Post= require("../models/jobpost");
+const Post= require("../models/jobpost.js");
 const { uploadPdf } = require("../utils/reduceFile");
 
 //PUBLIC HOME PAGE
