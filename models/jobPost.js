@@ -1,63 +1,4 @@
-// const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
 
-// const jobPostSchema = new Schema({
-//   image: {
-//     url: String,
-//     filename: String
-//   },
-//   jobTitle: {
-//     type: String,
-//     required: true
-//   },
-//   description: {
-//     type: String,
-//     required: true
-//   },
-//   salary: {
-//     type: String,
-//     default: null,
-//     validate: {
-//       validator: function (value) {
-//         if (!value) return true;
-//         return /^\d{1,3}(,\d{3})*(\s*-\s*\d{1,3}(,\d{3})*)?$/.test(value);
-//       },
-//       message: "Invalid salary format (e.g., 20,000 - 30,000)"
-//     }
-//   },
-//   city: {
-//     type: String,
-//     default: null
-//   },
-//   contactNumber: {
-//     type: String,
-//     default: null,
-//     validate: {
-//       validator: function (v) {
-//         if (!v) return true;
-//         return /^\+91 [6-9]\d{9}$/.test(v);
-//       },
-//       message: "Phone number must be like: +91 9876543210"
-//     }
-//   },
-//   postedDate: {
-//     type: String,
-//     default: function () {
-//       const date = new Date();
-//       return date.toLocaleDateString("en-IN", {
-//         day: "2-digit",
-//         month: "short",
-//         year: "numeric"
-//       });
-//     }
-//   },
-//   createdAt: {
-//     type: Date,
-//     default: Date.now
-//   }
-// });
-// const JobPost = mongoose.model('JobPost', jobPostSchema);
-// module.exports = JobPost;
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -154,5 +95,5 @@ const jobPostSchema = new Schema({
   }
 });
 
-const JobPost = mongoose.model('JobPost', jobPostSchema);
-module.exports = JobPost;
+const Jobpost = mongoose.model('JobPost', jobPostSchema);
+module.exports = Jobpost;
