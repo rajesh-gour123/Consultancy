@@ -21,7 +21,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
-const MongoStore = require("connect-mongo");
+//const MongoStore = require("connect-mongo");
 const User = require("./models/user");
 
 const path = require("path");
@@ -47,22 +47,22 @@ const dbUrl = process.env.ATLAS_URL;
 
 async function initializeApp() {
   try {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(dbUrl);  
     console.log("MongoDB connected");
 
     // create session store from mongoose client (avoid race conditions)
-    const store = MongoStore.create({
-      client: mongoose.connection.getClient(),
-      touchAfter: 24 * 3600,
-      crypto: { secret: process.env.SECRET || "fallbacksecret" },
-    });
+    // const store = MongoStore.create({
+    //   client: mongoose.connection.getClient(),
+    //   touchAfter: 24 * 3600,
+    //   crypto: { secret: process.env.SECRET || "fallbacksecret" },
+    // });
 
-    store.on("error", (err) => {
-      console.error("SESSION STORE ERROR", err);
-    });
+    // store.on("error", (err) => {
+    //   console.error("SESSION STORE ERROR", err);
+    // });
 
     const sessionOptions = {
-      store,
+      //store,
       secret: process.env.SECRET || "fallbacksecret",
       resave: false,
       saveUninitialized: false,
