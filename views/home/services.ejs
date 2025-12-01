@@ -1,0 +1,38 @@
+<%-layout('layouts/boilerplate') -%>
+<section id="services" class="services-section py-5">
+  <div class="container">
+
+    <h2 class="text-center fw-bold mb-3">Our Services</h2>
+    <p class="text-center text-muted mb-5">
+      Comprehensive career solutions tailored to your needs
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+      <% const services = [
+        { icon: "bi-briefcase-fill", title: "Job Placement", text: "Connect with top employers across IT, non-IT, and part-time positions tailored to your skills and career goals." },
+        { icon: "bi-file-earmark-text-fill", title: "Resume Support", text: "Professional resume writing and optimization services to make your application stand out to potential employers." },
+        { icon: "bi-people-fill", title: "Interview Preparation", text: "Comprehensive interview coaching and mock sessions to boost your confidence and success rate." },
+        { icon: "bi-compass-fill", title: "Career Guidance", text: "Personalized career counseling and strategic planning to help you achieve your professional aspirations." },
+        { icon: "bi-building", title: "Tea Tribes Development", text: "Development through awareness & action in internet of tea garden community." },
+        { icon: "bi-mortarboard-fill", title: "Distance Education System", text: "Government recognized board and universities for distance learning." },
+        { icon: "bi-award-fill", title: "Talent Hunt", text: "Merit test awareness & awarding young talents of the valley." },
+        { icon: "bi-book-fill", title: "Formal Schools & Coaching", text: "Education and coaching centers in backward areas for better learning." }
+      ]; %>
+
+      <% services.forEach(service => { %>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="service-card shadow-sm p-4 h-100 rounded-4 text-center">
+            <div class="service-icon mx-auto mb-3">
+              <i class="bi <%= service.icon %>"></i>
+            </div>
+            <h5 class="fw-bold"><%= service.title %></h5>
+            <p class="text-muted mt-2"><%= service.text %></p>
+          </div>
+        </div>
+      <% }) %>
+
+    </div>
+
+  </div>
+</section>

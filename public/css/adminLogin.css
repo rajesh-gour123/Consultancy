@@ -1,0 +1,58 @@
+    .auth-body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/images/admin-bg.jpg") center/cover no-repeat;
+    backdrop-filter: blur(4px);
+    }
+
+    .login-card {
+    width: 420px;
+    padding: 35px;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    }
+
+    .login-card h3 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    }
+
+    .login-card input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    height: 48px;
+    }
+
+    .login-card input::placeholder {
+    color: #ddd;
+    }
+
+    .login-btn {
+    margin-top: 15px;
+    background: linear-gradient(90deg, #00D2FF, #3A7BD5);
+    border: none;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 30px;
+    width: 100%;
+    font-weight: bold;
+    }
+
+    .alert {
+    background: rgba(255, 0, 0, 0.2);
+    color: #fff;
+    border: none;
+    }
+    .navbar .btn-primary {
+    display: none !important;
+    }

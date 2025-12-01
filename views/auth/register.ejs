@@ -1,0 +1,48 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-5" style="max-width: 450px;">
+  <h3 class="text-center mb-4">Sign Up</h3>
+
+  <% if (error && error.length > 0) { %>
+<div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<% if (success && success.length > 0) { %>
+<div class="alert alert-success"><%= success %></div>
+<% } %>
+
+  <form action="/register" method="POST" id="registerForm" novalidate>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" name="username" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" name="password" id="passwordInput" class="form-control" required>
+      <small class="form-text text-muted">
+        Must contain letters, numbers & special characters like @,#,!%
+      </small>
+    </div>
+
+    <button class="btn btn-primary w-100">Sign Up</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("registerForm").addEventListener("submit", function(e) {
+    const password = document.getElementById("passwordInput").value;
+    const strongPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$!%*?&]).+$/;
+
+    if (!strongPassword.test(password)) {
+      e.preventDefault();
+      alert("Password must include letters, numbers and special characters.");
+    }
+  });
+</script>

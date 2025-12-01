@@ -1,0 +1,149 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4" style="max-width: 900px;">
+
+  <h2 class="text-center mb-4">Edit Job Post</h2>
+
+  <div class="card shadow-sm p-4">
+
+    <!-- Current Image -->
+    <label class="form-label fw-bold">Current Image</label>
+    <img 
+      src="<%= post.image.url %>" 
+      class="img-fluid rounded mb-3" 
+      style="max-height: 200px; object-fit: cover;"
+    >
+
+    <form 
+      action="/admin/<%= post._id %>/edit?_method=PUT" 
+      method="POST" 
+      enctype="multipart/form-data"
+      class="needs-validation"
+      novalidate
+      id="createPostForm"
+    >
+
+      <!-- Upload New Image -->
+      <div class="mb-3">
+        <label class="form-label">Upload New Image (Optional)</label>
+        <input 
+          type="file" 
+          name="photo" 
+          id="photoInput"
+          class="form-control"
+          accept="image/*"
+        >
+        <div id="imgError" class="text-danger mt-1"></div>
+        <div class="form-text">Leave empty to keep current image.</div>
+      </div>
+
+      <!-- Job Title -->
+      <div class="mb-3">
+        <label class="form-label">Job Title</label>
+        <input 
+          type="text" 
+          name="post[jobTitle]" 
+          class="form-control" 
+          value="<%= post.jobTitle %>"
+          required
+        >
+        <div class="invalid-feedback">Job title is required.</div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea 
+          name="post[description]" 
+          class="form-control" 
+          rows="3" 
+          required
+        ><%= post.description %></textarea>
+        <div class="invalid-feedback">Description is required.</div>
+      </div>
+
+      <!-- Tags -->
+      <div class="mb-3">
+        <label class="form-label">Tags (comma separated)</label>
+        <input 
+          type="text"
+          name="post[tags]"
+          class="form-control"
+          value="<%= post.tags.join(', ') %>"
+        >
+      </div>
+
+      <!-- Job Type -->
+      <div class="mb-3">
+        <label class="form-label">Job Type</label>
+        <select name="post[jobType]" class="form-control" required>
+          <option value="Full-time" <%= post.jobType === "Full-time" ? "selected" : "" %>>Full-time</option>
+          <option value="Part-time" <%= post.jobType === "Part-time" ? "selected" : "" %>>Part-time</option>
+        </select>
+        <div class="invalid-feedback">Job type is required.</div>
+      </div>
+
+      <!-- Salary -->
+      <div class="mb-3">
+        <label class="form-label">Salary</label>
+        <input 
+          type="text" 
+          id="salaryInput"
+          name="post[salary]" 
+          class="form-control"
+          value="<%= post.salary %>"
+          required
+        >
+        <div id="salaryError" class="text-danger mt-1"></div>
+      </div>
+
+      <!-- City -->
+      <div class="mb-3">
+        <label class="form-label">City</label>
+        <input 
+          type="text" 
+          name="post[city]" 
+          class="form-control" 
+          value="<%= post.city %>"
+        >
+      </div>
+
+      <!-- Contact Number -->
+      <div class="mb-3">
+        <label class="form-label">Contact Number</label>
+        <input 
+          type="text" 
+          id="contactInput"
+          name="post[contactNumber]" 
+          class="form-control" 
+          value="<%= post.contactNumber %>"
+          required
+        >
+        <div id="contactError" class="text-danger mt-1"></div>
+        <div class="invalid-feedback">Enter a valid contact number.</div>
+      </div>
+
+      <!-- Company -->
+      <div class="mb-3">
+        <label class="form-label">Company (Optional)</label>
+        <input 
+          type="text" 
+          name="post[company]" 
+          class="form-control"
+          value="<%= post.company %>"
+        >
+      </div>
+
+      <button class="btn btn-primary w-100 mt-2" type="submit">
+        Update Post
+      </button>
+
+    </form>
+
+    <a href="/admin/dashboard" class="btn btn-secondary mt-3 w-100">
+      Back to Dashboard
+    </a>
+
+  </div>
+
+</div>

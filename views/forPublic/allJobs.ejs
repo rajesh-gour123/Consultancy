@@ -1,0 +1,132 @@
+<% layout("layouts/boilerplate") %>
+
+<section class="jobs-page py-5">
+  <div class="container">
+
+    <!-- Heading -->
+    <h2 class="fw-bold mb-1">Latest Job Opportunities</h2>
+    <small class="text-muted">Discover your next career opportunity</small>
+
+    <!-- Filters + Total Jobs -->
+    <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
+
+      <!-- Filter buttons -->
+      <div class="btn-group" role="group">
+        <button class="btn btn-outline-secondary filter-btn active" data-filter="all">All Jobs</button>
+        <button class="btn btn-outline-secondary filter-btn" data-filter="fulltime">Full-Time</button>
+        <button class="btn btn-outline-secondary filter-btn" data-filter="parttime">Part-Time</button>
+      </div>
+
+      <!-- Total Jobs Count -->
+      <h5 class="mb-0 text-primary fw-semibold">Total Jobs: 
+        <span id="totalCount"><%= jobs.length %></span>
+      </h5>
+    </div>
+
+    <!-- Job List -->
+    <div id="jobList" class="job-list">
+      <% jobs.forEach(job => { %>
+
+        <div 
+          id="job-<%= job._id %>"
+          class="job-row card mb-4 rounded-4 shadow-sm p-3 job-card 
+            <%= job.jobType === 'Full-time' ? 'job-fulltime' : 'job-parttime' %>
+            <%= selectedJobId == job._id ? 'highlight-job' : '' %>">
+
+          <div class="row g-0 align-items-center">
+
+            <!-- Job Image -->
+            <div class="col-md-3">
+              <img src="<%= job.image?.url || '/images/job-placeholder.jpg' %>"
+                class="img-fluid rounded-start"
+                style="width:100%; height:170px; object-fit:cover;">
+            </div>
+
+            <!-- Details -->
+            <div class="col-md-7">
+              <div class="card-body">
+
+                <h5 class="job-title mb-1"><%= job.jobTitle %></h5>
+
+                <% if (job.company) { %>
+                  <p class="text-muted mb-1"><%= job.company %></p>
+                <% } %>
+
+                <p class="small text-muted mb-2">
+                  <i class="bi bi-geo-alt"></i> <%= job.city || "Location not specified" %>  
+                  &nbsp; • &nbsp; <%= job.postedDate %>
+                  <% if (job.salary) { %> &nbsp; • &nbsp;<i class="bi bi-currency-rupee"></i> <%= job.salary %> <% } %>
+                </p>
+
+                <p class="job-desc text-muted mb-2">
+                  <%= job.description.length > 200 ? job.description.slice(0,200) + '...' : job.description %>
+                </p>
+
+                <% if (job.contactNumber) { %>
+                  <p class="text-muted small mb-2">📞 <%= job.contactNumber %></p>
+                <% } %>
+
+                <% if (job.tags && job.tags.length > 0) { %>
+                  <div class="job-tags mb-2">
+                    <% job.tags.forEach(tag => { %>
+                      <span class="badge rounded-pill tag-pill me-2"><%= tag %></span>
+                    <% }) %>
+                  </div>
+                <% } %>
+
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-md-2 d-flex flex-column align-items-end justify-content-center">
+
+              <!-- Job Type Badge -->
+              <% if (job.jobType === 'Full-time') { %>
+                <span class="job-type-badge fulltime mb-3">Full-Time</span>
+              <% } else { %>
+                <span class="job-type-badge parttime mb-3">Part-Time</span>
+              <% } %>
+
+              <!-- Apply Button -->
+              <a href="/apply/job/<%= job._id %>" class="btn btn-primary">
+                Apply Now
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Bottom Show All Button -->
+    <div class="text-center mt-4">
+      <a href="/apply/allJobs" class="btn btn-outline-primary btn-lg">
+        Show All Jobs
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Auto-scroll to highlighted job -->
+<script>
+  const selectedId = "<%= selectedJobId %>";
+  if (selectedId) {
+    const el = document.getElementById("job-" + selectedId);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+  }
+</script>
+
+<style>
+  .highlight-job {
+    border: 2px solid #0d6efd !important;
+    background: #e7f0ff !important;
+    transition: 0.3s ease;
+  }
+</style>

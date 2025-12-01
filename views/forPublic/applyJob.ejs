@@ -1,0 +1,32 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-5" style="max-width: 700px;">
+  <h2 class="text-center mb-4">Apply for: <%= post.jobTitle %></h2>
+
+  <form action="/apply/<%= post._id %>" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+    <div class="mb-3">
+      <label class="form-label">Full Name</label>
+      <input type="text" name="applicant[name]" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="applicant[email]" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Phone</label>
+      <input type="text" name="applicant[phone]" class="form-control" required>
+    </div>
+
+    <input type="hidden" name="applicant[jobId]" value="<%= post._id %>">
+
+    <div class="mb-3">
+      <label class="form-label">Upload Resume (PDF)</label>
+      <input type="file" name="resume" class="form-control" accept=".pdf" required>
+    </div>
+
+    <button class="btn btn-success w-100">Submit Application</button>
+  </form>
+</div>

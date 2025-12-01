@@ -1,0 +1,216 @@
+<% layout("owner/adminLayout") %>
+
+<% pageTitle = "Create New Job Post" %>
+<% pageSubtitle = "Add a new job to the portal" %>
+
+<div class="container mt-4" style="max-width: 1100px;">
+
+  <h2 class="mb-4 fw-bold">Create New Job Post</h2>
+
+  <form 
+    id="createPostForm"
+    action="/admin/createNewPost" 
+    method="POST" 
+    enctype="multipart/form-data"
+    class="needs-validation"
+    novalidate
+  >
+
+    <div class="row g-4">
+
+      <!-- LEFT SIDE IMAGE UPLOAD UI -->
+      <div class="col-md-5">
+
+        <label class="form-label fw-semibold">Upload Image</label>
+
+        <div class="upload-box d-flex flex-column justify-content-center align-items-center">
+
+          <i class="bi bi-cloud-arrow-up fs-1 text-secondary mb-2"></i>
+
+          <p class="text-muted small mb-1">Drag & drop or click to upload</p>
+
+          <label class="btn btn-outline-primary px-4">
+            Select File
+            <input 
+              type="file"
+              id="photoInput"
+              name="photo"
+              accept="image/*"
+              required
+              style="display:none"
+            >
+          </label>
+
+        </div>
+
+        <div id="imgError" class="text-danger mt-2"></div>
+        <div class="invalid-feedback d-block">Image is required.</div>
+
+      </div>
+
+      <!-- RIGHT SIDE FORM FIELDS -->
+      <div class="col-md-7">
+
+        <!-- Job Title -->
+        <div class="mb-3">
+          <label class="form-label">Job Title</label>
+          <input 
+            type="text"
+            name="post[jobTitle]"
+            class="form-control"
+            required
+          >
+          <div class="invalid-feedback">Job title is required.</div>
+        </div>
+
+        <!-- Company -->
+        <div class="mb-3">
+          <label class="form-label">Company Name (Optional)</label>
+          <input 
+            type="text"
+            name="post[company]"
+            class="form-control"
+            placeholder="Company Name"
+          >
+        </div>
+
+        <!-- Job Type + Tags -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Job Type</label>
+            <select name="post[jobType]" class="form-control" required>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+            </select>
+            <div class="invalid-feedback">Job type is required.</div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Tags (comma separated)</label>
+            <input 
+              type="text"
+              name="post[tags]"
+              class="form-control"
+              placeholder="React, JavaScript"
+            >
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea 
+            name="post[description]"
+            class="form-control"
+            rows="4"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Description is required.</div>
+        </div>
+
+        <!-- Salary / City / Contact -->
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Salary</label>
+            <input 
+              type="text"
+              name="post[salary]"
+              id="salaryInput"
+              class="form-control"
+              placeholder="25000 or 25000-30000"
+              required
+            >
+            <div id="salaryError" class="text-danger mt-1"></div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">City</label>
+            <input 
+              type="text"
+              name="post[city]"
+              class="form-control"
+              placeholder="Guwahati"
+            >
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Contact Number</label>
+            <input 
+              type="text"
+              name="post[contactNumber]"
+              id="contactInput"
+              class="form-control"
+              placeholder="+91 6000180569"
+              required
+            >
+            <div id="contactError" class="text-danger mt-1"></div>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <button class="btn btn-primary w-100 mt-2" type="submit">
+          Create Post
+        </button>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</div>
+
+<!-- Upload Box Styling -->
+<style>
+.upload-box {
+  border: 2px dashed #cbd5e1;
+  background: #f8fafc;
+  border-radius: 12px;
+  height: 340px;
+  cursor: pointer;
+}
+.upload-box:hover {
+  background: #eef2f7;
+  transition: 0.2s ease;
+}
+</style>
+
+<!-- Image Size Validation -->
+<script>
+const photoInput = document.getElementById("photoInput");
+const imgError = document.getElementById("imgError");
+
+photoInput.addEventListener("change", () => {
+  imgError.textContent = "";
+
+  const file = photoInput.files[0];
+  if (!file) return;
+
+  const maxSize = 1 * 1024 * 1024;
+
+  if (file.size > maxSize) {
+    imgError.textContent = "Image must be less than 1MB";
+    photoInput.value = "";
+    return;
+  }
+  // Show file name below input
+  imgError.style.color = "green";
+  imgError.textContent = "Selected: " + file.name;
+});
+</script>
+
+<!-- Bootstrap Validation -->
+<script>
+(() => {
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    });
+  });
+})();
+</script>

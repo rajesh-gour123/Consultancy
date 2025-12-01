@@ -1,0 +1,77 @@
+<%-layout('layouts/boilerplate') -%>  
+<section id="jobs" class="latest-jobs-section py-5">
+  <div class="container">
+
+    <!-- Heading -->
+    <h2 class="text-center fw-bold mb-2">Latest Job Opportunities</h2>
+    <p class="text-center text-muted mb-4">
+      Discover your next career opportunity
+    </p>
+
+    <!-- Filter Buttons -->
+    <div class="d-flex justify-content-center mb-4 gap-2">
+      <button class="job-filter-btn active" data-filter="all">All Jobs</button>
+      <button class="job-filter-btn" data-filter="fulltime">Full-Time</button>
+      <button class="job-filter-btn" data-filter="parttime">Part-Time</button>
+    </div>
+
+    <div class="row g-4">
+
+      <% jobs.slice(0, 6).forEach(job =>{ %>
+
+        <div class="col-md-4 job-card fade job-all 
+          <%= job.jobType === 'Full-time' ? 'job-fulltime' : 'job-parttime' %>">
+
+          <div class="job-box shadow-sm p-4 rounded-4">
+
+            <!-- Job Title -->
+            <h5 class="fw-bold"><%= job.jobTitle %></h5>
+
+            <!-- Company -->
+            <p class="text-muted mb-1"><%= job.company %></p>
+
+            <!-- Location -->
+            <p class="job-location">
+              <i class="bi bi-geo-alt"></i> <%= job.city %>
+            </p>
+
+            <!-- Salary -->
+            <p class="job-salary">
+              <i class="bi bi-currency-rupee"></i> <%= job.salary %>
+            </p>
+
+            <!-- Tags (IT / Non-IT / Full-Time / Part-Time) -->
+            <% if (job.tags && job.tags.length > 0) { %>
+              <% job.tags.forEach(tag => { %>
+                <span class="job-tag blue"><%= tag %></span>
+              <% }); %>
+            <% } %>
+
+            <!-- Job Type -->
+            <span class="job-tag <%= job.jobType === 'Full-time' ? 'green' : 'orange' %> ms-2">
+              <%= job.jobType %>
+            </span>
+
+            <!-- View More Button -->
+            <a href="/apply/jobs/<%= job._id %>" 
+               class="btn job-btn w-100 mt-3">
+              View More
+            </a>
+
+          </div>
+
+        </div>
+
+      <% }); %>
+
+    </div>
+
+    <!-- Bottom View All Button -->
+    <div class="text-center mt-4">
+      <a href="/apply/allJobs" class="btn btn-outline-primary px-4 py-2 rounded-pill">
+        View All Jobs
+      </a>
+    </div>
+
+  </div>
+</section>

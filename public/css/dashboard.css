@@ -1,0 +1,90 @@
+/* --- GLASS THEME --- */
+:root {
+  --primary: #00D2FF;
+  --primary-dark: #3A7BD5;
+  --glass-bg: rgba(255,255,255,0.25);
+  --border-color: rgba(255,255,255,0.35);
+}
+
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  padding: 25px 15px;
+  color: white;
+  position: fixed;
+  /* left: 0; */
+  top: 0;
+  bottom: 0;
+}
+
+.sidebar h3 {
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 15px;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+}
+
+/* --- MAIN AREA --- */
+.main-content {
+  margin-left: 260px;
+  padding: 25px;
+}
+
+/* --- STATS CARDS --- */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #333;
+}
+
+/* --- TABLE --- */
+.table-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.table th {
+  background: var(--primary-dark) !important;
+  color: white;
+}

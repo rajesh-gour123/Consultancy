@@ -1,0 +1,20 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-5" style="max-width: 700px;">
+  <h3 class="mb-4">Applicant Details</h3>
+
+  <ul class="list-group mb-3">
+    <li class="list-group-item"><strong>Name:</strong> <%= application.name %></li>
+    <li class="list-group-item"><strong>Email:</strong> <%= application.email %></li>
+    <li class="list-group-item"><strong>Phone:</strong> <%= application.phone %></li>
+    <li class="list-group-item"><strong>Applied On:</strong> <%= application.appliedAt.toDateString() %></li>
+  </ul>
+
+  <a href="<%= application.resume.url %>" target="_blank" class="btn btn-success w-100 mb-3">
+    View Resume
+  </a>
+
+  <a href="/admin/resumeAll" class="btn btn-secondary w-100">
+    Back to Applications
+  </a>
+</div>

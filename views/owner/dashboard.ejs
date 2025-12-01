@@ -1,0 +1,50 @@
+<% layout("owner/adminLayout") %>
+
+<% pageTitle = "Dashboard" %>
+<% pageSubtitle = "Overview of jobs and applications" %>
+
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="num"><%= allPosts.length %></div>
+    <div class="label">Total Jobs</div>
+  </div>
+  <div class="stat-card">
+    <div class="num"><%= fullTimeCount %></div>
+    <div class="label">Full-Time Jobs</div>
+  </div>
+  <div class="stat-card">
+    <div class="num"><%= partTimeCount %></div>
+    <div class="label">Part-Time Jobs</div>
+  </div>
+  <div class="stat-card">
+    <div class="num"><%= totalApplicants %></div>
+    <div class="label">Total Applications</div>
+  </div>
+</div>
+
+<div class="table-glass">
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Title</th><th>Salary</th><th>City</th><th>Contact</th><th>Posted</th><th class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% allPosts.forEach(post => { %>
+        <tr>
+          <td><strong><%= post.jobTitle %></strong></td>
+          <td><%= post.salary || "Negotiable" %></td>
+          <td><%= post.city || "N/A" %></td>
+          <td><%= post.contactNumber || "N/A" %></td>
+          <td><%= post.postedDate || "" %></td>
+          <td class="text-end">
+            <a href="/admin/<%= post._id %>/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+            <form action="/admin/<%= post._id %>/delete?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Delete this job?');">
+              <button class="btn btn-sm btn-outline-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

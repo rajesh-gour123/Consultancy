@@ -1,0 +1,185 @@
+/* admin.css - Teal / Aqua glass + responsive sidebar */
+
+/* variables */
+:root {
+  --teal-1: #00D2FF;
+  --teal-2: #3A7BD5;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --text-dark: #063041;
+}
+
+/* basic */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #f4fbfc;
+  color: #0b2b36;
+}
+
+/* main layout */
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* sidebar */
+.admin-sidebar {
+  width: 240px;
+  padding: 28px 18px;
+  background: linear-gradient(180deg, var(--teal-1), var(--teal-2));
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1200;
+}
+
+.admin-main {
+  margin-left: 240px;
+  flex: 1;
+  padding: 28px;
+  margin-top: 55px;
+}
+
+/* mobile topbar */
+.admin-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, var(--teal-1), var(--teal-2));
+  color: white;
+}
+
+.admin-topbar .topbar-title {
+  font-weight: 600;
+}
+
+/* nav */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.sidebar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.95);
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 500;
+}
+
+.sidebar-nav .nav-link i {
+  font-size: 18px;
+}
+
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+/* footer */
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.sidebar-user .username {
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* cards & table */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 6px 18px rgba(12, 40, 50, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.stat-card .num {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.stat-card .label {
+  color: #1b3b45;
+  opacity: 0.7;
+}
+
+.table-glass {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(12, 40, 50, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: white;
+}
+
+.table-glass .table thead th {
+  background: linear-gradient(90deg, var(--teal-2), var(--teal-1));
+  color: white;
+}
+
+/* responsive mobile */
+/* ======== MOBILE FIX FOR SIDEBAR ======== */
+
+@media (max-width: 1089px) {
+
+  /* show topbar always */
+  .admin-topbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    z-index: 2000;
+    background: linear-gradient(90deg, var(--teal-1), var(--teal-2));
+  }
+
+  /* hide sidebar outside screen */
+  .admin-sidebar {
+    transform: translateX(-100%);
+    z-index: 1500;
+    top: 55px; /* below topbar */
+  }
+
+  /* when open */
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* main content pushed down */
+  .admin-main {
+    margin-left: 0;
+    margin-top: 55px;
+  }
+}

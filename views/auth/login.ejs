@@ -1,0 +1,27 @@
+<% layout("layouts/authLayout") %>
+
+
+<div class="login-card">
+
+  <h3>Admin Login</h3>
+
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger"><%= error[0] %></div>
+  <% } %>
+
+  <form action="/login" method="POST">
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" name="username" class="form-control" required placeholder="Enter username">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" required placeholder="Enter password">
+    </div>
+
+    <button class="login-btn">LOGIN</button>
+  </form>
+  <a href="/apply/Home" style="color:white;">Back To Home</a>
+
+</div>

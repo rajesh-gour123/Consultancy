@@ -1,0 +1,125 @@
+<% layout("layouts/boilerplate") %>
+
+<section class="apply-section py-5">
+  <div class="container" style="max-width: 900px;">
+
+    <!-- Heading -->
+    <h2 class="text-center fw-bold mb-2">
+      <% if (typeof job !== "undefined") { %>
+        Apply for <span class="text-primary"><%= job.jobTitle %></span>
+      <% } else { %>
+        Apply Online
+      <% } %>
+    </h2>
+
+    <p class="text-center text-muted mb-5">
+      Submit your application and let us help you find the perfect job
+    </p>
+
+    <!-- Form Wrapper -->
+    <div class="p-4 shadow rounded-4 bg-white">
+
+      <form action="/apply" method="POST" enctype="multipart/form-data" class="row g-4" id="applyForm">
+
+        <!-- Full Name -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Full Name</label>
+          <input 
+            type="text" 
+            name="resume[name]" 
+            class="form-control custom-input" 
+            placeholder="Enter your full name" 
+            required
+          >
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Email Address</label>
+          <input 
+            type="email" 
+            name="resume[email]" 
+            class="form-control custom-input" 
+            placeholder="Enter your email" 
+            required
+          >
+        </div>
+
+        <!-- Phone -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Phone Number</label>
+          <input 
+            type="text" 
+            name="resume[phone]" 
+            class="form-control custom-input" 
+            placeholder="Enter your phone number"
+            required
+            pattern="[0-9]{10}"
+            minlength="10"
+            maxlength="10"
+            oninput="this.value = this.value.replace(/[^0-9]/g,''); this.setCustomValidity('');"
+            oninvalid="this.setCustomValidity('Phone number must be 10 digits')"
+          >
+        </div>
+
+        <% if (typeof job !== "undefined") { %>
+          <input type="hidden" name="resume[jobId]" value="<%= job._id %>">
+        <% } %>
+
+        <!-- Resume Upload -->
+        <div class="col-12">
+          <label class="form-label fw-semibold">Upload Resume</label>
+
+          <div class="upload-box border border-2 border-primary rounded-4 p-4 text-center">
+            <input 
+              type="file" 
+              id="resumeInput"
+              name="resume" 
+              class="form-control custom-input" 
+              accept="application/pdf" 
+              required
+            >
+
+            <div id="resumeError" class="text-danger mt-2"></div>
+
+            <p class="text-muted mt-2 small">
+              PDF only — Maximum 2MB
+            </p>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12">
+          <button class="btn btn-primary w-100 py-2 fs-5 rounded-pill">
+            Submit Application
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CLIENT-SIDE PDF VALIDATION -->
+<script>
+document.getElementById("resumeInput").addEventListener("change", function () {
+  const file = this.files[0];
+  const errorDiv = document.getElementById("resumeError");
+
+  if (!file) {
+    errorDiv.textContent = "";
+    return;
+  }
+
+  const maxSize = 2 * 1024 * 1024; // 2MB
+
+  if (file.size > maxSize) {
+    errorDiv.textContent = "PDF must be less than 2MB";
+    this.value = ""; // Clear file
+  } else {
+    errorDiv.textContent = "";
+  }
+});
+</script>
