@@ -67,7 +67,7 @@ store.on("error", (err) => {
 });
 
 const sessionOptions = {
- // store,
+ store,
   secret: process.env.SECRET || "fallbacksecret", 
   resave: false,
   saveUninitialized: false,
