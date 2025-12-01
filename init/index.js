@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const initData = require("./data.js");
-const jobPostSchema = require("../models/jobpost.js");
+const jobPostSchema = require("../models/jobPost.js");
 let MONGO_URL = "mongodb://127.0.0.1:27017/Consultancy";
 main()
 .then(()=>{
