@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/expressError.js");
-const Post= require("../models/jobpost.js");
+const jobPost= require("../models/jobpost.js");
 const resumeView = require("../models/publicResume");
 const ContactMessage = require("../models/contactMessage");
 const { validatePost,validateContact} = require("../middleware.js");
@@ -15,7 +15,7 @@ const { uploadImage } = require("../utils/reduceFile");
 // OWNER DASHBOARD
 router.get("/dashboard", async (req, res) => {
 
-  const allPosts = await Post.find({});
+  const allPosts = await jobPost.find({});
 
   const fullTimeCount = await Post.countDocuments({ jobType: "Full-time" });
   const partTimeCount = await Post.countDocuments({ jobType: "Part-time" });
@@ -119,7 +119,7 @@ router.post(
 // EDIT POST FORM
 router.get("/:id/edit",wrapAsync(async (req, res,next) => {
     let {id} = req.params;
-    const post = await Post.findById(id);
+    const post = await jobPost.findById(id);
     if(!post){
        return next(new ExpressError(404,"post not found"));
     }
@@ -135,7 +135,7 @@ router.put(
   wrapAsync(async (req, res, next) => {
 
     const { id } = req.params;
-    let post = await Post.findById(id);
+    let post = await jobPost.findById(id);
 
     if (!post) {
       throw new ExpressError(404, "Post not found");
@@ -233,7 +233,7 @@ router.delete(
       await cloudinary.uploader.destroy(post.image.filename);
     }
 
-    await Post.findByIdAndDelete(id);
+    await jobPost.findByIdAndDelete(id);
 
     req.flash("success", "Post deleted successfully!");
     res.redirect("/admin/dashboard");
