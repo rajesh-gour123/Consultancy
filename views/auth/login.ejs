@@ -1,11 +1,10 @@
 <% layout("layouts/authLayout") %>
 
-
 <div class="login-card">
 
   <h3>Admin Login</h3>
 
-  <% if (error && error.length > 0) { %>
+  <% if (error && error.length) { %>
     <div class="alert alert-danger"><%= error[0] %></div>
   <% } %>
 
@@ -22,6 +21,7 @@
 
     <button class="login-btn">LOGIN</button>
   </form>
+
   <a href="/apply/Home" style="color:white;">Back To Home</a>
 
 </div>
