@@ -1,4 +1,4 @@
-/* --- GLASS THEME --- */
+--- GLASS THEME ---
 :root {
   --primary: #00D2FF;
   --primary-dark: #3A7BD5;
@@ -18,7 +18,6 @@
   padding: 25px 15px;
   color: white;
   position: fixed;
-  /* left: 0; */
   top: 0;
   bottom: 0;
 }
